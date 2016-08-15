@@ -18,4 +18,30 @@ $(document).ready(function() {
 			$(e.currentTarget).closest('ul').hide();
 			$('form#signin').fadeIn('fast');
 	});
+	
+	// Ajax funtion to display result
+	$('#btnSearch').on('click', function(event) {
+		event.preventDefault();
+		// Get user selection values
+		var job = $('#keyword').val();
+		var job_cat = $('#job_cat').val();
+		var location = $('#location').val();
+		$.ajax({
+			type: 'POST',
+			url:'process.php',
+			data: {job:job, job_cat:job_cat, location:location },
+			dataType: 'json',
+			success: function(response){
+				var result = '';
+				for ( i = 0; i < response.length; i++) {
+					result += '<tr>';
+					result += '<td>';
+					result += response[i].title;
+					result += '</td>';
+					result += '</tr>';
+				}
+				$('#tblResult').html(result);
+            }
+		})
+	});
 });

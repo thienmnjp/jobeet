@@ -5,7 +5,7 @@ $categories = $db -> select("SELECT cat_id,cat_name FROM categories");
 $locations = $db -> select("SELECT location_id,location_name FROM location");
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
  <head>
  	<meta charset="utf-8">
@@ -14,8 +14,9 @@ $locations = $db -> select("SELECT location_id,location_name FROM location");
  	<title>LTT Job</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script src="js/main.js"></script>
  	<style type="text/css">
  	 header {
  	 	background-color: #F8F8F8;
@@ -242,14 +243,13 @@ $locations = $db -> select("SELECT location_id,location_name FROM location");
  		 	<div class="wrap-headline">
  		 		<h1 class="text-center">LifeTime</h1>
  		 		<div style="border-radius: 25px; background: #FFF; padding: 20px;">
- 		 			<form class="form" method="post" action="process.php" >
-					<input type="hidden" name="searchx" value="1000"/>
+ 		 			<form class="form" method="post">
  		 			<div class="col-md-1"></div>
 	 		 		<div class="col-md-3">
-	 		 			<input type="text" name="keyword" class="form-control" placeholder="Enter job title" />
+	 		 			<input type="text" name="keyword" class="form-control" placeholder="Enter job title" id="keyword" />
 	 		 		</div>
 	 		 		<div class="col-md-3">
-	 		 			<select name="category" class="form-control">
+	 		 			<select name="category" class="form-control" id="job_cat">
 	 		 				<option value="">--Job Categories--</option>
 	 		 				<?php 
 	 		 				    foreach($categories as $value){
@@ -259,7 +259,7 @@ $locations = $db -> select("SELECT location_id,location_name FROM location");
 	 		 			</select>
 	 		 		</div>
 	 		 		<div class="col-md-2">
-	 		 			<select name="location" class="form-control">
+	 		 			<select name="location" class="form-control" id="location">
 	 		 				<option value="">Select location</option> 
 	 		 				<?php 
 	 		 				    foreach($locations as $value){
@@ -270,11 +270,11 @@ $locations = $db -> select("SELECT location_id,location_name FROM location");
 	 		 			</select>
 	 		 		</div>
 	 		 		<div class="col-md-2">
-	 		 			<button class="btn btn-success btn-md" type="submit">Search</button>
+	 		 			<button class="btn btn-success btn-md" id="btnSearch">Search</button>
 	 		 		</div>
 	 		 		<div class="col-md-1"></div>
  		 		</form>
-				<table style="margin-top:150px">
+				<table style="margin-top:150px" id="tblResult">
 				    <tr>
 					    <td>
 						</td>
